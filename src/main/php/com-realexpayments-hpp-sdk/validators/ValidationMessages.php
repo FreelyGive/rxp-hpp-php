@@ -83,6 +83,8 @@ class ValidationMessages {
 	const hppRequest_validateCardOnly_size = "Validate card only flag must not be more than 1 character in length";
 	const hppRequest_validateCardOnly_pattern = "Validate card only flag must be 1 or 0";
 
+  const hppRequest_displayCvn_pattern = "Display CVN flag must be TRUE or FALSE";
+
 	const hppRequest_dccEnable_size = "DCC enable flag must not be more than 1 character in length";
 	const hppRequest_dccEnable_pattern = "DCC enable flag must be 1 or 0";
 
