@@ -78,7 +78,8 @@ class RequestMapper implements iMapper {
 			'PMT_REF'             => $hppRequest->getPaymentReference(),
 			'PAYER_EXIST'         => $hppRequest->getPayerExists(),
 			'VALIDATE_CARD_ONLY'  => $hppRequest->getValidateCardOnly(),
-			'DCC_ENABLE'          => $hppRequest->getDccEnable()
+			'DCC_ENABLE'          => $hppRequest->getDccEnable(),
+			'HPP_DISPLAY_CVN'     => $hppRequest->getDisplayCvn(),
 		);
 
 		$supplementaryData = $hppRequest->getSupplementaryData();

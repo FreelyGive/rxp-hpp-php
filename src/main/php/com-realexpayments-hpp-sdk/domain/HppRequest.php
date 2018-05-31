@@ -358,6 +358,17 @@ class HppRequest {
 
 	private $postResponse;
 
+
+  /**
+   * Whether the CVN (CVV) number should be displayed.
+   *
+   * @var string This field determines wheter the CVN (CVV) number should be
+   * displayed. It should be TRUE or FALSE.
+   *
+   * @Assert\Regex(pattern="/^(TRUE|FALSE)$/", message=ValidationMessages::hppRequest_displayCvn_pattern )
+   */
+  private $displayCvn = 'TRUE';
+
 	/**
 	 * Getter for merchantId
 	 *
@@ -726,6 +737,26 @@ class HppRequest {
 	public function getSupplementaryData() {
 		return $this->supplementaryData;
 	}
+
+
+  /**
+   * Whether the CVN number should be visible to the purchaser.
+   *
+   * @return string
+   */
+  public function getDisplayCvn() {
+	  return $this->displayCvn;
+  }
+
+  /**
+   * Sets whether or not the CVN number should be visible.
+   *
+   * @param string $show
+   *   Whether the CVN number should be visible.
+   */
+  public function setDisplayCvn($show) {
+	  $this->displayCvn = $show;
+  }
 
 	/**
 	 * Setter for supplementaryData
@@ -1471,6 +1502,7 @@ class HppRequest {
 		$payerReference   = null == $this->payerReference ? "" : $this->payerReference;
 		$paymentReference = null == $this->paymentReference ? "" : $this->paymentReference;
 		$hppSelectStoredCard = null == $this->hppSelectStoredCard ? "" : $this->hppSelectStoredCard;
+		$displayCvn = $this->displayCvn;
 
 
         // Override payerRef with hppSelectStoredCard if present.
@@ -1531,6 +1563,8 @@ class HppRequest {
 				. "."
 				. $currency;
 		}
+
+		$toHash .= '.' . $displayCvn;
 
 		$this->hash = GenerationUtils::generateHash( $toHash, $secret );
 
@@ -1652,4 +1686,3 @@ class HppRequest {
 
 
 }
-
